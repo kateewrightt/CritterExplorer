@@ -1,16 +1,30 @@
 import React from "react";
-import { Container, Row, Col, Input, Button } from "reactstrap";
-import { FaSearch } from "react-icons/fa";
+import { Container, Row, Col } from "reactstrap";
 import "./App.css";
 import flick from "./assets/flick.png";
+import Search from "./components/CitySearch";
+import PageCount from "./components/PageCount";
 
 function App() {
+  const handleOnSearchChange = (searchData) => {
+    console.log(searchData);
+  };
+
   return (
     <div className="App">
       <Container className="text-center mt-5">
         <Row>
           <Col className="image-col">
-            <img src={flick} alt="Flick" className="image" />
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <img src={flick} alt="Flick" className="image" />
+              <PageCount />
+            </div>
           </Col>
         </Row>
         <Row>
@@ -21,19 +35,7 @@ function App() {
                 Find what ACNH critters are out and about in your city!
               </p>
             </div>
-
-            <div className="d-flex justify-content-center">
-              <Input
-                className="search-bar"
-                placeholder="Enter a city name"
-                type="search"
-                aria-label="Search"
-                aria-describedby="search-addon"
-              />
-              <Button className="search-button" id="search-addon">
-                <FaSearch />
-              </Button>
-            </div>
+            <Search onSearchChange={handleOnSearchChange} />
           </Col>
         </Row>
       </Container>
